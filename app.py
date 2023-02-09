@@ -2,8 +2,8 @@ import streamlit as st
 import pinecone
 import utils
 
-pinecone.init(api_key=utils.pinecone_api_key,
-              environment=utils.pinecone_environment)
+pinecone.init(api_key=st.secrets["pinecone_api_key"],
+              environment=st.secrets["pinecone_environment"])
 
 st.set_page_config(page_title="GodsAPP",
                    page_icon=":guardsman:", layout="wide")
