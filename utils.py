@@ -3,6 +3,10 @@ import openai
 import pinecone
 import json
 import streamlit as st
+
+pinecone.init(api_key=st.secrets["pinecone_api_key"],
+              environment=st.secrets["pinecone_environment"])
+
 sentencemodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 
