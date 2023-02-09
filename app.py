@@ -1,7 +1,7 @@
 import streamlit as st
 import pinecone
 import utils
-import streamlist as st
+import streamlit as st
 
 st.set_page_config(page_title="GodsAPP",
                    page_icon=":guardsman:", layout="wide")
