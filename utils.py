@@ -2,6 +2,7 @@ from sentence_transformers import SentenceTransformer
 import openai
 import pinecone
 import json
+import streamlit as st
 sentencemodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 
@@ -13,15 +14,8 @@ def convert_to_float(embeddings):
         embeddings_float.append(embed)
     return embeddings_float
 
-
-openai_apikey = "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"
-pinecone_api_key = "9554fd78-b53b-48e4-90fa-dfcd786ebb0c"
-pinecone_environment = "us-east1-gcp"
-openai_organisation = "org-AwhqkuEPSDL0GUvYMCd2J9ON"
-
 with open("finaldata.json", "r") as f:
     finaldata = json.loads(f.read())
-
 
 def qa(genre, query):
 
@@ -57,7 +51,7 @@ def qa(genre, query):
 
     prompt = prompt + context + "Question: " + query + "\n" + "Answer:\n\n"
 
-    openai.api_key = openai_apikey
+    openai.api_key = st.secrets["openai_apikey"]
 
     # query = query + "Keep your answer strictly to context provided. If you are not confident about answer mention as I am not confident of answer"
     response = openai.Completion.create(
