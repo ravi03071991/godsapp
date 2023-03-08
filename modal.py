@@ -18,22 +18,6 @@ if stub.is_inside():
     pinecone_api_key = "9554fd78-b53b-48e4-90fa-dfcd786ebb0c"
     pinecone_environment = "us-east1-gcp"
     pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
-    # index = pinecone.Index('gita')
-
-    # from sentence_transformers import SentenceTransformer
-    # sentencemodel = SentenceTransformer(
-    #     'sentence-transformers/all-MiniLM-L6-v2')
-
-
-# @stub.function(timeout=12000)
-# def convert_to_float(embeddings):
-#     embeddings_float = []
-#     for embed in embeddings:
-#         embed = list(embed)
-#         embed = [float(val) for val in embed]
-#         embeddings_float.append(embed)
-#     return embeddings_float
-
 
 @stub.function(
     timeout=12000,
@@ -102,19 +86,6 @@ def get_response(genre, query):
 
     return response["choices"][0]["text"] + "----------------" + context
 
-
-# @stub.function(mounts=[modal.Mount.from_local_file("./finaldata.json", remote_path="/askholy/finaldata.json")])
-# def get_data():
-#     import json
-#     file_path = "/askholy/finaldata.json"
-
-#     with open(file_path, "r") as f:
-#         totaldata = json.loads(f.read())
-
-#     return totaldata
-
-
-# @stub.local_entrypoint
 @stub.webhook
 def test(genre: str, query: str):
     try:
